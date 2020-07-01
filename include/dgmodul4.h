@@ -71,17 +71,20 @@
 
 #define	SA_256KB			0x40000
 #define	SA_64KB				0x10000
+#define	SA_4KB				0x1000
 
 #define	TOTAL_SIZE_256MB		0x10000000
 #define	TOTAL_SIZE_128MB		0x08000000
 #define	TOTAL_SIZE_64MB			0x04000000
 #define	TOTAL_SIZE_32MB			0x02000000
 #define	TOTAL_SIZE_16MB			0x01000000
+#define	TOTAL_SIZE_8MB			0x00100000
 
 #define	CYPRESS_MANUFACTURER_ID		0x01	/* Cypress	*/
 #define	WINBOND_MANUFACTURER_ID		0xEF	/* Winbond	*/
 #define	MACRONIX_MANUFACTURER_ID	0xC2	/* Macronix	*/
 #define	MICRON_MANUFACTURER_ID		0x20	/* Micron	*/
+#define EON_MANUFACTURER_ID         0x1C    /* EON */
 
 #define	DEVICE_ID_S25FS128S		0x2018
 #define	DEVICE_ID_S25FS512S		0x0220
@@ -108,6 +111,8 @@
 #define	DEVICE_ID_MT25QU01G		0xBB21
 #define	DEVICE_ID_MT25QL02G		0xBA22
 #define	DEVICE_ID_MT25QU02G		0xBB22
+
+#define DEVICE_ID_EN25QH64A     0x7017
 
 void dgG2LoadSpiflash0(void);
 void InitRPC_Mode(void);

@@ -413,6 +413,7 @@ uint32_t CheckQspiFlashId(void)
 				break;
 			}
 		break;
+
 		case MICRON_MANUFACTURER_ID:
 			PutStr(" Micron : ", 0);
 			switch(deviceId)
@@ -467,19 +468,46 @@ uint32_t CheckQspiFlashId(void)
 						gQspi_sa_size    = SA_64KB;
 						gQspi_end_addess = TOTAL_SIZE_256MB - 0x8000 - 1;
 				break;
+
 				default:
 					ret = -1;
 				break;
 			}
 		break;
+
+	    case EON_MANUFACTURER_ID:
+            PutStr(" EON : ", 0);
+			switch(deviceId)
+			{
+			    case DEVICE_ID_EN25QH64A:
+						PutStr("EN25QH64A", 1);
+						gQspi_sa_size    = SA_64KB;
+						gQspi_end_addess = TOTAL_SIZE_64MB - 0x8000 - 1;
+			    break;
+
+			    default:
+				    ret = -1;
+			    break;
+             }
+        break;
+
 		default:
 			ret = 1;
 		break;
 	}
+
 	if (ret)
 	{
 		Data2HexAscii(readDevId, str, 4);
 		PutStr(" FlashID = 0x", 0);
+		PutStr(str, 1);
+
+		Data2HexAscii(deviceId, str, 4);
+		PutStr(" deviceID = 0x", 0);
+		PutStr(str, 1);
+
+		Data2HexAscii(manuId, str, 4);
+		PutStr(" manuId = 0x", 0);
 		PutStr(str, 1);
 	}
 	return ret;
@@ -1413,7 +1441,7 @@ static uint32_t CkExtendDdrRamCheck(void* ramAddr)
 	}
 	DelStr(15);
 	PutStr("Data=0x12345678",0);
- 
+
 	/* Write */
 	data = 0x12345678;
 	for (loop = 0; loop < 0x100000; loop++)
